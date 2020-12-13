@@ -1,7 +1,7 @@
-## Predicting Housing Sales Prices in King County
+# Predicting Housing Sales Prices in King County
 Objective: To build and run a multivariate linear regression model to predict housing sales prices in King County using the given dataset (committed to this repo).
 
-**Repo Contents**
+## Repo Contents
 
 **Python Modules**
 (in 'module2_scripts' folder)
