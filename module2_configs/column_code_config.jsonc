@@ -1,0 +1,17 @@
+{
+    "Date": "date",
+    "Latitude": "lat",
+    "Longitude": "long",
+    "Bedrooms": "bedrooms",
+    "Bathrooms": "bathrooms",
+    "Home Square Footage": "sqft_living",
+    "Lot Square Footage": "sqft_lot",
+    "Floors": "floors",
+    "Grade": "grade",
+    "Year Built": "yr_built",
+    "Condition": "condition",
+    "Waterfront": "waterfront",
+    "View": "view",
+    "Basement Square Footage": "sqft_basement",
+    "Zipcode": "zipcode"
+}
