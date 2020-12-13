@@ -50,7 +50,7 @@ class Separator:
             _from:
                 String of classification to move variable FROM (has to be either 'cont' or 'cat')
             _to:
-                String of clarigication to move variable TO (has to be either 'cont' or 'cat')
+                String of classification to move variable TO (has to be either 'cont' or 'cat')
             cols:
                 List of cols to move in specified direction
         """
