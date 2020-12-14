@@ -59,3 +59,15 @@ The validation summary for the model is encouraging as well, see below:
 ![val report](https://user-images.githubusercontent.com/69776410/102030600-6042d400-3d81-11eb-8a00-c9626c99ad84.png)
 
 We ran train-test split model validation test using a 20% test set size, as well as K-Fold cross validation tests using 5, 10, 20, and 50 folds. Using the more reliable K-Fold CV test, we see that the root mean squared deviation is around ~143k. Given the scale of the units of the dependent variabl, this RMSE is pretty good.
+
+## Concluding Notes
+More in-depth explanations on the model approach and output are available in the notebooks, as well as the modules scripts. The pricing.ipynb shows how to use the pricer.py module to calculate a model-derived price for a house with some given inputs, and then marks the data point on a Folium map for visualization. 
+
+Some examples below:
+
+![image](https://user-images.githubusercontent.com/69776410/102030933-756c3280-3d82-11eb-9341-3a1510e7e685.png)
+
+![image](https://user-images.githubusercontent.com/69776410/102030996-a187b380-3d82-11eb-85ff-e19a6a161420.png)
+
+![image](https://user-images.githubusercontent.com/69776410/102031030-b95f3780-3d82-11eb-99e7-1a3286d1078d.png)
+
