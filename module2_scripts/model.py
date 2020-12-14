@@ -13,6 +13,7 @@ from sklearn.model_selection import cross_val_score, KFold
 from itertools import combinations
 import datetime as dt
 
+from module2_scripts.grapher import Grapher
 from module2_scripts.util import display_side_by_side
 pd.set_option('display.float_format', lambda x: '%.3f' % x)
 plt.style.use('seaborn')
@@ -390,7 +391,7 @@ class ModelValidation(Model):
         plt.ylabel('Y-Actual')
         plt.title('Predicted Y vs Actual Y')
         plt.show()
-        resid = y_pred - self.y
+        resid = self.y - y_pred
         plt.figure(figsize=(10,8))
         plt.title('Distribution of Model Residuals')
         sns.distplot(resid, hist=True, kde=True)
