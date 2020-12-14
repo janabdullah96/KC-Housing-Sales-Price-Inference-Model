@@ -272,6 +272,8 @@ class FittedModel(Model):
         interactions = self.__interactions()
         for i in interactions[:self.n_interactions]:
             self.X[f'{i[0]}*{i[1]}'] = self.X[i[0]] * self.X[i[1]]
+        features_with_interaction = self.__stepwise_feature_selection()
+        self.X = self.X[features_with_interaction]
         print('=== Completed generating final X dataframe ===')
 
 
