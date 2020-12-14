@@ -1,9 +1,10 @@
+
 # Predicting Housing Sales Prices in King County
 Objective: To build and run a multivariate linear regression model to predict housing sales prices in King County using the given dataset (committed to this repo).
 
 ## Repo Contents
 
-**Python Modules**
+**Python Modules** 
 (in 'module2_scripts' folder)
 
 1. formatter.py - contains functionality to inspect formatting of raw data and execute data re-formatting.
@@ -28,3 +29,33 @@ Objective: To build and run a multivariate linear regression model to predict ho
 5. EDA.ipynb - in this notebook we perform EDA to complement the building of the model. We explore some questions using the cleaned (but not pre-processed, i.e. all variables are in their original form) dataframe, and come up with answers that we expect to be reflected by the final model. 
 
 
+
+
+## The Final Model
+
+![image.png](attachment:image.png)
+
+![image.png](attachment:image.png)
+
+![image.png](attachment:image.png)
+
+Looking at the OLS regression summary above for the final model, we note that the adjusted R-squared is 73.7%, which means that 73.7% of the variance in our dataset is explained by the model. We still have strong positive skewness and kurtosis, with the distribution being leptokurtic. This is due to the outliers still present on the right tail of the distribution, even after the dataset has been cleaned. The aim for the model was not necessarily for the model distribution to resemble a perfect standard normal distribution, as we'd only achieve this at the expense of large amounts of data, so only the very extreme outliers of the dataset were removed and the resulting distribution can explain the actual nature of the dataset, which is that a substantial number of large positive outliers are inherent in this subject. 
+
+
+Let's take a look at the scatterplot of actual sales prices vs model-predicted sales prices below.
+
+![image.png](attachment:image.png)
+
+We can see that in the lower values, the predicted vs. actual y are tightly fitted around y=x, and disperse out as the values go higher, i.e. as we move towards the right tail. From this, we can note that the model works better for predicting the sales prices of averagely prices houses than houses that may be outliers. 
+
+Let's also take a look at the distribution of model residuals.
+
+![image.png](attachment:image.png)
+
+The distribution reflects that the model residuals are normally distributed. However, kurtosis is still a bit high since the tails are heavy, and since the right tail extends farther we can conclude that the distribution is positively skewed as well. The tight cluster of residuals around 0, and the long tails tell us that the model is good at predicting sales prices for the most part, but does not do so well in some extreme cases, which we'll accept.
+
+The validation summary for the model is encouraging as well, see below:
+
+![image.png](attachment:image.png)
+
+We ran train-test split model validation test using a 20% test set size, as well as K-Fold cross validation tests using 5, 10, 20, and 50 folds. Using the more reliable K-Fold CV test, we see that the root mean squared deviation is around ~143k. Given the scale of the units of the dependent variabl, this RMSE is pretty good.
