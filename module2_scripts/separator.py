@@ -63,7 +63,7 @@ class Separator:
             self.df_cat_cols_ls = [elem for elem in self.df_cat.columns if elem not in cols]
             self.df_cont_cols_ls = list(self.df_cont.columns.values) + cols
         else:
-            raise Valuerror("Check _from and _to inputs! Should be either 'cont' or 'cat'!")
+            raise ValueError("Check _from and _to inputs! Should be either 'cont' or 'cat'!")
         self.df_cont = self.df[self.df_cont_cols_ls]
         self.df_cat = self.df[self.df_cat_cols_ls]
         print(f'\nAmended Continuous variable columns: \n{self.df_cont_cols_ls}')
