@@ -25,7 +25,6 @@ class PricingPreprocessor:
         return
     
     def __preprocess_input_vars(self):
-        
         """
         Preprocess input variables
         
@@ -44,7 +43,6 @@ class PricingPreprocessor:
                     coefficient = mapped coefficient
                     term value = the final input value (final_value) multiplied by the coefficient
         """
-        
         input_vars_preprocessed_dict = {}
         for k, v in self.inputs.items():
             input_vars_preprocessed_dict[k] = {
@@ -112,8 +110,7 @@ class PricingPreprocessor:
         
         return input_vars_preprocessed_dict
     
-    def __preprocess_interaction_vars(self):
-        
+    def __preprocess_interaction_vars(self):       
         """
         Preprocess interaction terms
         
@@ -173,14 +170,12 @@ class Pricer(PricingPreprocessor):
     
     """Class to derive pricing using the given model"""
     
-    def __init__(self, model, mapping, bin_config, inputs, binary_vars=[]):
-        
+    def __init__(self, model, mapping, bin_config, inputs, binary_vars=[]):     
         super().__init__(model, mapping, bin_config, inputs, binary_vars)
         self.processed_output = None
         return
     
-    def run(self, display=True):
-        
+    def run(self, display=True):   
         """Gather preprocessed inputs and add all term values to the intercept"""
         intercept = self.model.params['const']
         addends = [intercept]
@@ -198,8 +193,7 @@ class Pricer(PricingPreprocessor):
         if display:
             self.__display(price)
 
-    def __display(self, price):
-        
+    def __display(self, price):      
         input_df = pd.DataFrame(self.inputs, index=['Inputs']).T
         input_df.index.name = 'Category'
         print('\n\t== Inputs ==')
