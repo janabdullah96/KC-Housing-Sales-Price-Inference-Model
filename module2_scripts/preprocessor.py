@@ -13,7 +13,6 @@ class Preprocessor:
         continuous_col_transform_exceptions=[], categorical_col_binning_exceptions=[],
         manual_categorical_binning_config={}
         ):
-
         """
         Args:
             df: 
@@ -36,7 +35,6 @@ class Preprocessor:
                 Nested dictionary where parent keys are column names. Values are dictionaries where keys are
                 binned values and values are all the different values to be binned to the key. 
         """
-
         self.df = df
         self.dep_var = dep_var
         self.df_cont = df_continuous
@@ -49,8 +47,7 @@ class Preprocessor:
         self.df_preprocessed = None
         return
     
-    def generate_X(self):
-        
+    def generate_X(self):       
         print('=== Generating preprocessed X (predictor variables) dataframe as obj.X instance attribute ===')
         df_cont = self.__transform_continuous()
         df_cat = self.__one_hot_encode_categoricals()
@@ -58,24 +55,20 @@ class Preprocessor:
         print('=== Completed generating X dataframe ===')
     
     def generate_y(self):
-
         print('=== Generating preprocessed y (target variable) dataframe as obj.y isntance attribute ===')
         self.y = self.df[[self.dep_var]].copy()
         print('=== Completed generating y dataframe ===')
     
     def generate_preprocessed(self):
-
         print('=== Generating full preprocessed dataframe as obj.df_preprocessed instance attribute ===')
         self.df_preprocessed = pd.concat([self.y, self.X], axis=1)
         print('=== Completed generating preprocessed dataframe ===')
     
     def __transform_continuous(self):
-
         """
         Apply log normalization and standardization to continuous predictor variables
         Display histogram with KDE overlay of final transformed variable
         """
-
         print('='*50)
         print('=== Beginning process of log transforming and standardizing continuous variable columns ===')
         print(f'Exempted continuous columns for transformation: {self.continuous_col_transform_exceptions}')
@@ -103,7 +96,6 @@ class Preprocessor:
         return df
     
     def __one_hot_encode_categoricals(self):
-
         """
         Apply one-hot encoding to categorical variables
         Apply binning where necessary and specified
