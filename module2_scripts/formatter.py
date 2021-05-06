@@ -14,7 +14,6 @@ class Formatter:
         return 
 
     def reformat_data_input(self, col=None, value_replace = {}):
-        
         """
         Method to forcefully change values
 
@@ -33,9 +32,7 @@ class Formatter:
                 print(e)
 
     def initial_formatting(self):
-
         """Fill all NaN values as 0 and convert columns containing only dates to datetime objects"""
-
         print('=== Beginning initial formatting phase ===\n')
         self.df = self.df.fillna(0)
         print('Filled all NaN values with 0!')
@@ -47,14 +44,12 @@ class Formatter:
                 continue
         print('\n=== Completed initial formatting ===')
     
-    def flagger(self):
-        
+    def flagger(self):        
         """
         Scan dataframe and flag any columns that may have inconsistent data formats
         These would be columns of 'Object' dtypes
         Display summary diagnostics to user to help them take action on inconsistent data
         """
-
         print('=== Beginning scanning dataframe for any inconsistent data formats ===')
         for col in self.df.columns:
             dtype = self.df[col].dtype
