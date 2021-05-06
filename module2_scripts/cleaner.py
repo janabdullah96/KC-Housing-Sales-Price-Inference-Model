@@ -11,7 +11,6 @@ class DatasetCleaner:
     """Diagnoses and cleans dataframe of outliers"""
 
     def __init__(self, df, dep_var, continuous_cols, categorical_cols, exceptions=[]):
-
         """
         Args:
             df:
@@ -36,7 +35,6 @@ class DatasetCleaner:
         return
 
     def clean(self, config_dict):
-        
         """
         Removes data from dataframe per the specified configuration
 
@@ -47,7 +45,6 @@ class DatasetCleaner:
                       and values are numerical values denoting the range of 
                       values to keep. 
         """
-
         self.df_clean = self.df
         for k, v in config_dict.items():
             n = len(self.df_clean[k])
@@ -64,9 +61,7 @@ class DatasetCleaner:
         print(f'\n{n-n_clean} ({n_removed_pct}% of dataframe) rows removed from overall dataframe!')
     
     def filter_cols(self, remove_cols=[], cleaned=True):
-        
         """removes columns from relevant attributes"""
-
         if cleaned:
             self.df_clean.drop(remove_cols, axis=1, inplace=True)
             self.df_cat_clean.drop([col for col in remove_cols if col in self.cat_cols], axis=1, inplace=True)
@@ -76,9 +71,7 @@ class DatasetCleaner:
         print(f'Removed columns {remove_cols} from all relevant dataframe attributes in instance object!')
                 
     def display_summary_report(self):
-
         """Displays useful information to user to help them setting cleaning configurations"""
-
         df = self.df[[elem for elem in self.df.columns.values if elem not in self.exceptions]]
         print('----------Displaying frequency distributions with KDE overlay and column summary reports----------')
         print('='*100)
@@ -133,12 +126,10 @@ class DatasetCleaner:
             print('\n')
 
     def display_collinearity_report(self, cleaned=True):
-
         """
         Displays multicollinearity heatmap and summary report where all variable pairs with
         correlation coefficients above 0.75 are displayed
         """
-
         if cleaned:
             df = self.df_clean
         else:
