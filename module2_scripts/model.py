@@ -23,7 +23,6 @@ class Model:
     """Base model class"""
     
     def ols_summary(self, df=pd.DataFrame(), return_predictors=False):
-
         """
         Method to run OLS regression and display the model summary
 
@@ -39,7 +38,6 @@ class Model:
             return_predictors (optional): 
                 statsmodel.api predictor variable constants
         """
-        
         print('---------- Running OLS Regression Summary Report for ' + \
                 f'{self.__class__.__name__} Object----------\n' + \
                 '='*80
@@ -54,7 +52,6 @@ class Model:
             return model
     
     def handle_datetime_values(self):
-
         """
         Method to handle datetime values because statsmodel.api OLS method function cannot handle datetime
         Converts each datetime value in the column to an integer, signifying the number of days from the 
@@ -85,7 +82,6 @@ class ModelTests(Model):
     """Model child class to examine OLS regression runs for singular variables"""
 
     def __init__(self, X, y):
-
         """
         Args:
             X: 
@@ -100,7 +96,6 @@ class ModelTests(Model):
         return
     
     def run_tests(self):
-        
         """
         Method to take each variable in the predictor variables dataframe and run a single variable OLS regression on it.
         For dummy variables that exist in the predictor dataframe, this method groups all of them to their original variable
@@ -127,7 +122,6 @@ class BaseModel(Model):
     """Model child class for running OLS regression on initial unprocessed inputs"""
 
     def __init__(self, X, y):
-
         """
         Args:
             X: 
@@ -144,10 +138,9 @@ class BaseModel(Model):
 
 class FittedModel(Model):
     
-    "Model child class that takes predictor variable dataframes and mutates it for better model fit"
+    """Model child class that takes predictor variable dataframes and mutates it for better model fit"""
 
     def __init__(self, X, y, n_interactions):
-
         """
         Args:
             X:
@@ -221,7 +214,6 @@ class FittedModel(Model):
         return included 
     
     def __interactions(self):
-
         """
         Method to find interaction terms to predictor variables dataframe
         The interaction terms cross validation score has to be higher than the 
@@ -261,12 +253,10 @@ class FittedModel(Model):
         return interactions
 
     def generate_final_X(self):
-
         """
         Method to filter predictor variable dataframe to selected features and add interaction terms
         Mutation is applied directly to self.X
-        """
-        
+        """      
         print('=== Beginning process of generating final X dataframe using stepwise feature selection and interactions ===')
         features = self.__stepwise_feature_selection()
         self.X = self.X[features]
@@ -281,8 +271,8 @@ class FittedModel(Model):
 class ModelValidation(Model):
     
     """Model child class to validate OLS models"""
+    
     def __init__(self, X, y, test_size=0.2, k_folds=[5,10,20,50]):
-
         """
         Args:
             X:
@@ -303,14 +293,12 @@ class ModelValidation(Model):
         return
         
     def validation_report(self):
-
         """
         Displays validation report to user which includes:
             -The train and test split
             -The sqrt(mse) of the training and test data
             -The sqrt(mse) of each K-Fold cross validation run
-        """
-        
+        """    
         train_mse, test_mse = self.__train_test_split_mse()
         cross_validation_mse = self.__k_fold_cross_val()
         print('---------- Validation Report ----------')
@@ -323,9 +311,7 @@ class ModelValidation(Model):
         self.__display_actual_vs_prediction()
 
     def __splits(self):
-
         """Applies train-test split to input data"""
-
         X_train, X_test, y_train, y_test = train_test_split(
             self.X, self.y, test_size=self.test_size, random_state=27
             )
@@ -340,13 +326,11 @@ class ModelValidation(Model):
         display(df)
         return X_train, X_test, y_train, y_test 
 
-    def __train_test_split_mse(self):
-        
+    def __train_test_split_mse(self):   
         """
         Calculates the square root of mean squared error for model residuals,
         where the model is run on the training set and test set separately
         """
-
         X_train, X_test, y_train, y_test = self.__splits()
         linreg = LinearRegression()
         linreg.fit(X_train, y_train)
@@ -356,13 +340,11 @@ class ModelValidation(Model):
         test_mse = mean_squared_error(y_test, y_hat_test)
         return train_mse, test_mse
     
-    def __k_fold_cross_val(self):
-        
+    def __k_fold_cross_val(self):   
         """
         Performs K-Fold cross validation on the dataset and returns the 
         square root of the average mean squared error values of each fold
         """
-
         cv_results_dict = {}
         mse = make_scorer(mean_squared_error)
         for k in self.k_folds:
@@ -377,7 +359,6 @@ class ModelValidation(Model):
         return cv_results_dict
 
     def __display_actual_vs_prediction(self):
-
         print('== Displaying Predicted vs Actual Y values ==')
         linreg = LinearRegression()
         linreg.fit(self.X, self.y)
