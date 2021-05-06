@@ -12,8 +12,7 @@ class Grapher:
     class for plotting different types of graphs with some standardized basic attributes
     """
 
-    def __init__(self, xlabel, ylabel, title, df, ymin=None, ymax=None):
-        
+    def __init__(self, xlabel, ylabel, title, df, ymin=None, ymax=None):        
         """
         Args:
             xlabel (str): Label for x-axis of plot
@@ -23,7 +22,6 @@ class Grapher:
             ymin (float): [Optional] parameter to set minimum y value of y axis
             ymax (float): [Optional] parameter to set maximum y value of y axis
         """
-
         self.xlabel = xlabel
         self.ylabel = ylabel
         self.title = title
@@ -32,8 +30,7 @@ class Grapher:
         self.ymax = ymax
         return
     
-    def static_attributes(self):
-        
+    def static_attributes(self):        
         """
         set static attributes of all graphs that will be plotted using this class
         """
@@ -53,8 +50,7 @@ class Grapher:
     @classmethod
     def plot_multiple_line_graph(
         cls, xlabel, ylabel, title, df, ymin=None, ymax=None
-        ):
-        
+        ): 
         plt, x, y = cls(
             xlabel, ylabel, title, df, ymin, ymax
             ).static_attributes()
@@ -68,7 +64,6 @@ class Grapher:
     def plot_multiple_bar_graph(
         cls, xlabel, ylabel, title, df, ymin=None, ymax=None, barvalues=False, h=False
         ):
-
         plt, x, y = cls(
             xlabel, ylabel, title, df, ymin, ymax
             ).static_attributes()
@@ -94,7 +89,6 @@ class Grapher:
     def plot_histogram(
         cls, xlabel, ylabel, title, df, bins=None, ymin=None, ymax=None
         ):
-
         plt, x, y = cls(
             xlabel, ylabel, title, df, ymin, ymax
             ).static_attributes()
@@ -148,7 +142,6 @@ class Grapher:
     def plot_boxplot(
         cls, xlabel, ylabel, title, dct, df=pd.DataFrame(), bins=None, ymin=None, ymax=None
         ):
-
         plt, x, y = cls(
             xlabel, ylabel, title, df, ymin, ymax
             ).static_attributes()
